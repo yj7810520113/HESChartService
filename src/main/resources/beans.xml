@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:task="http://www.springframework.org/schema/task"  
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/task
+        http://www.springframework.org/schema/task/spring-task.xsd">
+
+	 
+	
+	<context:component-scan base-package="org.maomao.*"></context:component-scan>
+ 
+	<mvc:annotation-driven></mvc:annotation-driven>
+	<aop:aspectj-autoproxy/>
+
+	<!-- hiberante4中通过session来注入 -->
+	<!--创建spring的SessionFactory工厂 -->
+	<bean id="sessionFactory"
+		  class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" >
+		<!--注入数据源 -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- 设置spring去那个包中查找相应的实体类 -->
+		<property name="hibernateProperties">
+			<!-- <value> hibernate.dialect=org.hibernate.dialect.HSQLDialect </value> -->
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.format_sql">false</prop>
+				<prop key="hibernate.autoReconnect">true</prop>
+				<!-- Connection Pooling Info -->
+				<prop key="initialPoolSize">1</prop>
+				<prop key="minPoolSize">1</prop>
+				<prop key="maxPoolSize">15</prop>
+				<prop key="maxIdleTime">1800</prop>
+				<prop key="maxStatements">0</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- dataSource -->
+	<bean id="dataSource"
+		  class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+	<bean id="jdbcTemplate"
+		  class="org.springframework.jdbc.core.JdbcTemplate" abstract="false"
+		  lazy-init="false" autowire="default">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+
+
+	<bean id="myConfigurer"
+		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath:jdbc.properties</value>
+
+			</list>
+		</property>
+	</bean>
+	<bean id="txManager"
+		  class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!--<aop:config>-->
+		<!--&lt;!&ndash; 设置point，表示那些方法需要加入事务管理 &ndash;&gt;-->
+		<!--&lt;!&ndash;事物应该在service层处理 &ndash;&gt;-->
+		<!--<aop:pointcut id="allMethods" expression="execution(* org.maomao.service.*.*(..))" />-->
+		<!--<aop:advisor advice-ref="txAdvice" pointcut-ref="allMethods" />-->
+	<!--</aop:config>-->
+
+	<!-- 配置哪些方法需要加入事务控制 -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<!-- 让所有方法加入事务管理 -->
+			<!--为了提高效率可以吧一些查询的方法设置为只读事物 -->
+			<!-- <tx:method name="*" propagation="REQUIRED" read-only="true"/> <tx:method
+				name="del*" propagation="REQUIRED"/> <tx:method name="add*" propagation="REQUIRED"/>
+				<tx:method name="save*" propagation="REQUIRED"/> <tx:method name="update*"
+				propagation="REQUIRED"/> -->
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+</beans>
