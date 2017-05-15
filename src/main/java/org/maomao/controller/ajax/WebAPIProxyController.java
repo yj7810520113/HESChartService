@@ -16,7 +16,7 @@ import java.io.InputStreamReader;
  */
 @RestController
 @RequestMapping(value = "/ajax/")
-public class WebAPIProxy {
+public class WebAPIProxyController {
     @ResponseBody
     @RequestMapping(value = "proxy",method = RequestMethod.GET)
     public String proxy(@RequestParam(value = "url",required=false) String url){

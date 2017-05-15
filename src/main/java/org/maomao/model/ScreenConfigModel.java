@@ -4,23 +4,23 @@ package org.maomao.model;
  * Created by Administrator on 2017/5/5.
  */
 public class ScreenConfigModel {
-    private String gridConfig;
-    private String hescList;
-    public String getGridConfig() {
+    private Object gridConfig;
+    private Object hescList;
+
+
+    public Object getGridConfig() {
         return gridConfig;
     }
 
-    public void setGridConfig(String gridConfig) {
+    public void setGridConfig(Object gridConfig) {
         this.gridConfig = gridConfig;
     }
 
-    public String getHescList() {
+    public Object getHescList() {
         return hescList;
     }
 
-    public void setHescList(String hescList) {
+    public void setHescList(Object hescList) {
         this.hescList = hescList;
     }
-
-
 }

@@ -18,7 +18,7 @@ import java.io.InputStreamReader;
  */
 @RestController
 @RequestMapping(value = "/ajax/")
-public class ScreenConfig {
+public class ScreenConfigController {
 
     private ScreenConfigDao screenConfigDao;
     public ScreenConfigDao getScreenConfigDao() {
@@ -46,6 +46,7 @@ public class ScreenConfig {
     @ResponseBody
     @RequestMapping(value = "screen/find/config",method = RequestMethod.GET)
     public Object findScreenConfigController(@RequestParam(value = "userName",required=false) String userName,@RequestParam(value = "screenName",required=false) String screenName){//这里的encode为hash加密后的值
+        System.out.println("正在查找用户名和大屏名称");
         return  screenConfigDao.findScreenConfig(userName,screenName);
     }
 }
