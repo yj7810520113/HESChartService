@@ -6,7 +6,7 @@ package org.maomao.model;
 public class ScreenConfigModel {
     private Object gridConfig;
     private Object hescList;
-
+    private String imgUrl;
 
     public Object getGridConfig() {
         return gridConfig;
@@ -22,5 +22,13 @@ public class ScreenConfigModel {
 
     public void setHescList(Object hescList) {
         this.hescList = hescList;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }

@@ -4,12 +4,18 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
     http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
 	id="WebApp_1443179565374">
-	<display-name>AirZJ</display-name>
+	<display-name>webapiproxy</display-name>
+
+
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath*:beans.xml</param-value>
 	</context-param>
+
+
+
+
 	
 	<!-- 网页编码为utf-8过滤器 -->
 	<filter>
@@ -29,6 +35,9 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+
+
+
 	<!-- OpenSessionInViewerFilter过滤器   Hibernat的session延迟到视图层关闭-->
 	 <!--<filter>-->
 		<!--<filter-name>openSessionInViewerFilter</filter-name>-->
@@ -40,15 +49,7 @@
 	<!--</filter-mapping>-->
 
 	<!--Spring带的Hibernate4  OpenSessionInView过滤器 -->
-	<filter>
-		<filter-name>SpringOpenSessionInViewFilter</filter-name>
-		<filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>SpringOpenSessionInViewFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
- 
+
 	<!--CORS过滤器  -->
 	<filter>
 		<filter-name>cors</filter-name>
@@ -58,6 +59,7 @@
 		<filter-name>cors</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
 
 	<!--jwt过滤器  -->
 	<filter>
@@ -69,9 +71,29 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
  
+	<!--<listener>-->
+		<!--<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>-->
+	<!--</listener>-->
+
+	<!--<servlet>-->
+		<!--<servlet-name>springMVC</servlet-name>-->
+		<!--<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>-->
+		<!--<init-param>-->
+			<!--<param-name>contextConfigLocation</param-name>-->
+			<!--<param-value>classpath*:springMVC.xml</param-value>-->
+		<!--</init-param>-->
+		<!--<load-on-startup>1</load-on-startup>-->
+	<!--</servlet>-->
+	<!--<servlet-mapping>-->
+		<!--<servlet-name>springMVC</servlet-name>-->
+		<!--<url-pattern>/</url-pattern>-->
+	<!--</servlet-mapping>-->
+
+
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+
 
 	<servlet>
 		<servlet-name>springMVC</servlet-name>
@@ -86,7 +108,6 @@
 		<servlet-name>springMVC</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
 
 
 

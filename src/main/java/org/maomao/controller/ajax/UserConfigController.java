@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +27,7 @@ public class UserConfigController {
 
     @ResponseBody
     @RequestMapping(value = "login")
-    public JSONObject addScreenConfigController(@RequestParam(value = "userName",required=false) String userName,@RequestParam(value = "passWord",required=false) String passWord){
+    public JSONObject addScreenConfigController(@RequestParam(value = "userName",required=false) String userName, @RequestParam(value = "passWord",required=false) String passWord, HttpServletRequest request, HttpServletResponse response){
         if(userConfigDao.userLoginDao(userName,passWord)){
             //生成token
             Map<String , Object> payload=new HashMap<String, Object>();

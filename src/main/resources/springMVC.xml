@@ -17,7 +17,9 @@
 	<context:component-scan base-package="org.maomao.controller.ajax"></context:component-scan>
 	<mvc:annotation-driven></mvc:annotation-driven>
 	
-	<!-- 静态资源 --> 
+	<!-- 静态资源 -->
+	<mvc:resources location="/" mapping="/*/*.jpg"></mvc:resources>
+	<mvc:resources location="/" mapping="/*/*.log"></mvc:resources>
 	<mvc:resources location="/" mapping="/*/*.ico"></mvc:resources>
 	<mvc:resources location="/" mapping="/*.png"></mvc:resources>
 	<mvc:resources location="/" mapping="/*/*.js"></mvc:resources>
