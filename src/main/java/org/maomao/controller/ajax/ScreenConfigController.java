@@ -73,6 +73,7 @@ public class ScreenConfigController {
     @ResponseBody
     @RequestMapping(value = "screen/delete/config")
     public boolean deleteScreenConfigController(HttpServletRequest request,@RequestParam(value = "id",required=false) String id){
+        System.out.println("id:"+id);
         return screenConfigDao.deleteScreenConfig(getUIDController.getUID(request),id);
     }
 

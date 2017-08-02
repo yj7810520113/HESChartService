@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="webapiproxy:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="MineChicken-Road.war">
+      <element id="artifact" artifact-name="webapiproxy:war exploded" />
+    </root>
+  </artifact>
+</component>

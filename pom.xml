@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>maomao</groupId>
-	<artifactId>webapiproxy</artifactId>
+	<artifactId>MineChicken-Road</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>webapiproxy Maven Webapp</name>
+	<name>MineChicken-Road Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<!-- 设定主仓库，按设定顺序进行查找。 -->
 	<repositories>
@@ -295,7 +295,7 @@
 						<version>8.1.16.v20140903</version> -->
 
 					<configuration>
-						<contextPath>/webapiproxy</contextPath>
+						<contextPath>/MineChicken-Road</contextPath>
 
 						<stopPort>8088</stopPort>
 						<stopKey>foo</stopKey>
@@ -305,6 +305,6 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
-		<finalName>webapiproxy</finalName>
+		<finalName>MineChicken-Road</finalName>
 	</build>
 </project>
