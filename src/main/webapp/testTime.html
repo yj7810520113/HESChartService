@@ -1,0 +1,51 @@
+<!--
+ * Created by WebStorm
+ * User:maomao,http://www.mmcode.top
+ * Date:2017/7/17
+ * Time:10:47
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+    .node {
+        stroke: #000;
+        stroke-width: 1.5px;
+    }
+
+    .link {
+        stroke: #999;
+        stroke-width: 1.5px;
+    }
+
+</style>
+<svg width="1300" height="600"></svg>
+<script>
+
+
+</script>
+
+<script>
+    let start=new Date().getTime();
+    $.get('http://localhost:8080/MineChicken-Road/ajax/getpredictdata/2016-03-03', function (d) {
+       console.log(new Date().getTime()-start);
+    });
+
+    let start1=new Date().getTime();
+    $.get('http://localhost:8080/MineChicken-Road/ajax/getroadstatus/2016-03-03', function (d) {
+        console.log(new Date().getTime()-start1);
+    });
+    </script>
+
+</body>
+</html>
